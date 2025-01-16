@@ -1,0 +1,17 @@
+{
+    "name": "alumno/songs",
+    "autoload": {
+        "psr-4": {
+            "Alumno\\Songs\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "4ndreaCatMen",
+            "email": "catalanmenachoandrea@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^9.6"
+    }
+}
