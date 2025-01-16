@@ -1,10 +1,15 @@
 <?php
 require 'conexion.php';
+require 'logger.php';  // Importamos el Logger
+require __DIR__ . '/../vendor/autoload.php';
+// Inicializamos el logger
+$logger = LoggerManager::getLogger();
 
 // Obtener ID de la canción a editar
 $id = $_GET['id'] ?? null;
 
 if (!$id) {
+    $logger->warning('Intento de acceso a editar sin ID de canción');
     header("Location: index.php");
     exit;
 }
@@ -15,6 +20,7 @@ $query->execute([$id]);
 $cancion = $query->fetch(PDO::FETCH_ASSOC);
 
 if (!$cancion) {
+    $logger->warning("Canción con ID $id no encontrada");
     header("Location: index.php");
     exit;
 }
@@ -25,13 +31,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $titulo = $_POST['titulo'] ?? '';
     $fecha = $_POST['fecha'] ?? '';
 
-    $update = $pdo->prepare("UPDATE canciones SET autor = ?, titulo = ?, fecha = ? WHERE ID = ?");
-    $update->execute([$autor, $titulo, $fecha, $id]);
-
-    header("Location: index.php");
-    exit;
+    try {
+        $update = $pdo->prepare("UPDATE canciones SET autor = ?, titulo = ?, fecha = ? WHERE ID = ?");
+        $update->execute([$autor, $titulo, $fecha, $id]);
+        
+        $logger->info("Canción con ID $id actualizada correctamente");
+        header("Location: index.php");
+        exit;
+    } catch (Exception $e) {
+        $logger->warning("Error al actualizar la canción con ID $id: " . $e->getMessage());
+        echo "Error al actualizar la canción";
+    }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">

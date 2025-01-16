@@ -1,9 +1,18 @@
 <?php
 session_start();
 require 'conexion.php';
+require 'logger.php';  // Importamos el Logger
+// Incluir el autoload de Composer
+require __DIR__ . '/../vendor/autoload.php';  // Ajusta la ruta si es necesario
+
+// Resto del código...
+
+// Inicializamos el logger
+$logger = LoggerManager::getLogger();
 
 // Verificar si el usuario está autenticado
 if (!isset($_SESSION['usuario'])) {
+    $logger->warning('Intento de acceso sin autenticar');
     header("Location: login.php");
     exit;
 }
@@ -31,7 +40,19 @@ $sql .= " ORDER BY fecha DESC";
 $query = $pdo->prepare($sql);
 $query->execute($params);
 $canciones = $query->fetchAll(PDO::FETCH_ASSOC);
+
+// Registrar información en el log
+$logger->info('Página de listado de canciones cargada');
+
+// Verificación si hay canciones
+if (count($canciones) > 0) {
+    $logger->info('Se encontraron canciones en la base de datos');
+} else {
+    $logger->info('No se encontraron canciones en la base de datos');
+}
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="es">

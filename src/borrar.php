@@ -1,9 +1,14 @@
 <?php
 session_start();
 require 'conexion.php';
+require 'logger.php';  // Importamos el Logger
+require __DIR__ . '/../vendor/autoload.php';
+// Inicializamos el logger
+$logger = LoggerManager::getLogger();
 
 // Verificar si el usuario está autenticado
 if (!isset($_SESSION['usuario'])) {
+    $logger->warning('Intento de acceso sin autenticar para borrar canción');
     header("Location: login.php");
     exit;
 }
@@ -19,27 +24,33 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
     // Verificar si la canción existe
     if (!$cancion) {
+        $logger->warning("Canción con ID $idCancion no encontrada para borrar");
         echo "Canción no encontrada.";
         exit;
     }
 } else {
     // Si no se pasa un ID válido, redirigir a la página principal
+    $logger->warning('No se pasó un ID válido para borrar');
     header("Location: index.php");
     exit;
 }
 
 // Procesar la eliminación si el formulario se envía
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
-    // Eliminar la canción de la base de datos
-    $query = $pdo->prepare("DELETE FROM canciones WHERE ID = ?");
-    $query->execute([$idCancion]);
+    try {
+        $query = $pdo->prepare("DELETE FROM canciones WHERE ID = ?");
+        $query->execute([$idCancion]);
 
-    // Redirigir a la lista de canciones después de la eliminación
-    header("Location: index.php");
-    exit;
+        $logger->info("Canción con ID $idCancion eliminada exitosamente");
+        header("Location: index.php");
+        exit;
+    } catch (Exception $e) {
+        $logger->warning("Error al intentar eliminar la canción con ID $idCancion: " . $e->getMessage());
+        echo "Error al eliminar la canción";
+    }
 }
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
