@@ -3,7 +3,7 @@ session_start();
 require 'conexion.php';
 require 'logger.php';  // Importamos el Logger
 require __DIR__ . '/../vendor/autoload.php';
-// Inicializamos el logger
+
 $logger = LoggerManager::getLogger();
 
 // Verificar si el usuario está autenticado

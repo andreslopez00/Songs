@@ -1,5 +1,4 @@
 <?php
-// Logger.php
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
