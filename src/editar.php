@@ -1,6 +1,6 @@
 <?php
 require 'conexion.php';
-require 'logger.php';  // Importamos el Logger
+require 'logger.php';  
 require __DIR__ . '/../vendor/autoload.php';
 
 $logger = LoggerManager::getLogger();
@@ -44,6 +44,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Pasar las variables necesarias al archivo HTML
 include 'editar_form.html';
 ?>

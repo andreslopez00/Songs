@@ -13,14 +13,12 @@
             <div class="card-body">
                 <h5 class="card-title text-center mb-4">Iniciar Sesión</h5>
 
-                <!-- Mostrar mensaje de error -->
                 <?php if (isset($error)): ?>
                     <div class="alert alert-danger" role="alert">
                         <?= htmlspecialchars($error) ?>
                     </div>
                 <?php endif; ?>
 
-                <!-- Formulario de inicio de sesión -->
                 <form method="POST">
                     <div class="mb-3">
                         <label for="email" class="form-label">Correo Electrónico</label>

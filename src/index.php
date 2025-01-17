@@ -1,8 +1,8 @@
 <?php
 session_start();
 require 'conexion.php';
-require 'logger.php';  // Importamos el Logger
-require __DIR__ . '/../vendor/autoload.php';  // Ajusta la ruta si es necesario
+require 'logger.php';  
+require __DIR__ . '/../vendor/autoload.php';  
 
 $logger = LoggerManager::getLogger();
 
@@ -47,6 +47,5 @@ if (count($canciones) > 0) {
     $logger->info('No se encontraron canciones en la base de datos');
 }
 
-// Pasar las variables necesarias al archivo HTML
 include 'listado_canciones.html';
 ?>

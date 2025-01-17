@@ -1,7 +1,7 @@
 <?php
 session_start();
 require 'conexion.php';
-require 'logger.php';  // Importamos el Logger
+require 'logger.php';  
 require __DIR__ . '/../vendor/autoload.php';
 
 $logger = LoggerManager::getLogger();
@@ -49,54 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar'])) {
         echo "Error al eliminar la canción";
     }
 }
+
+include 'confirmar_borrado.html';
 ?>
-
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmar Borrado</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-</head>
-<body class="bg-light">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Canciones Radio</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="logout.php">Cerrar Sesión</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container my-5">
-        <h1 class="text-center mb-4">Confirmar Borrado de Canción</h1>
-
-        <!-- Confirmación de eliminación -->
-        <div class="alert alert-warning">
-            <h4 class="alert-heading">¿Estás seguro de que deseas eliminar esta canción?</h4>
-            <p><strong>Título:</strong> <?= htmlspecialchars($cancion['titulo']) ?></p>
-            <p><strong>Autor:</strong> <?= htmlspecialchars($cancion['autor']) ?></p>
-            <p><strong>Fecha:</strong> <?= htmlspecialchars($cancion['fecha']) ?></p>
-        </div>
-
-        <!-- Formulario de confirmación -->
-        <form method="POST">
-            <div class="d-flex justify-content-center">
-                <button type="submit" name="confirmar" class="btn btn-danger btn-lg me-3">Eliminar</button>
-                <a href="index.php" class="btn btn-secondary btn-lg">Cancelar</a>
-            </div>
-        </form>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>

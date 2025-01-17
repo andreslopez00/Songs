@@ -2,7 +2,7 @@
 session_start();
 require 'conexion.php';
 
-$error = ''; // Variable para el mensaje de error
+$error = ''; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
@@ -21,6 +21,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Pasar las variables necesarias al archivo HTML
 include 'login_form.html';
 ?>
