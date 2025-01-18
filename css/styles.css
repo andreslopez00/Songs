@@ -1,0 +1,72 @@
+/* Reset general */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 1.5rem;
+}
+
+header nav a {
+    font-size: 1rem;
+    font-weight: 500;
+}
+.navbar {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+main {
+    flex-grow: 1;
+}
+main .card {
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+main .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+main h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #343a40;
+}
+
+.table-responsive {
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+}
+
+/* Buttons */
+button {
+    border-radius: 25px;
+}
+
+/* Footer */
+footer {
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+    font-size: 0.875rem;
+    color: #f8f9fa;
+}
+
+footer p {
+    margin: 0;
+}

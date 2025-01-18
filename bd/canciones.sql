@@ -20,6 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `canciones`
 --
+DROP DATABASE canciones;
 CREATE DATABASE IF NOT EXISTS `canciones` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `canciones`;
 
@@ -79,7 +80,8 @@ INSERT INTO `canciones` (`ID`, `autor`, `titulo`, `fecha`) VALUES
 (76, 'My Chemical Romance', 'Welcome to the Black Parade', '2024-05-23'),
 (77, 'The Strokes', 'Last Nite', '2024-05-23'),
 (78, 'Franz Ferdinand', 'Take Me Out', '2024-05-23'),
-(79, 'The White Stripes', 'Seven Nation Army', '2024-05-23');
+(79, 'The White Stripes', 'Seven Nation Army', '2024-05-23'),
+(80, 'Melones Rinconeros', 'Melonada historica', '2025-02-23');
 
 -- --------------------------------------------------------
 
